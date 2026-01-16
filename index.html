@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Addiction Assessment | Digital Balance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      color: #e5e7eb;
+    }.hero {
+  padding: 80px 20px 40px;
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(56,189,248,0.15);
+  color: #38bdf8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #9ca3af;
+  max-width: 640px;
+  margin: auto;
+}
+
+.card {
+  max-width: 800px;
+  margin: 40px auto 80px;
+  background: linear-gradient(180deg, #020617, #020617) padding-box,
+              linear-gradient(135deg, #38bdf8, #6366f1) border-box;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.question {
+  margin-bottom: 28px;
+}
+
+.question p {
+  font-weight: 500;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #020617;
+  border: 1px solid #1f2933;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.options label:hover {
+  border-color: #38bdf8;
+  background: rgba(56,189,248,0.05);
+}
+
+input[type=radio] {
+  accent-color: #38bdf8;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: #020617;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(56,189,248,0.4);
+}
+
+.result {
+  margin-top: 30px;
+  padding: 24px;
+  border-radius: 16px;
+  display: none;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.low {
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.4);
+  color: #bbf7d0;
+}
+
+.moderate {
+  background: rgba(234,179,8,0.15);
+  border: 1px solid rgba(234,179,8,0.4);
+  color: #fef08a;
+}
+
+.high {
+  background: rgba(239,68,68,0.15);
+  border: 1px solid rgba(239,68,68,0.4);
+  color: #fecaca;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+  </style>
+</head>
+<body>  <section class="hero">
+    <div class="badge">Digital Wellbeing Tool</div>
+    <h1>Understand Your Mobile Usage<br>Before It Controls You</h1>
+    <p>A quick, science-inspired self‑assessment to measure your relationship with your smartphone. Private, fast, and judgement‑free.</p>
+  </section>  <section class="card">
+    <form id="quizForm"><div class="question">
+    <p>1. How often do you unlock your phone without a clear reason?</p>
+    <div class="options">
+      <label><input type="radio" name="q1" value="0" required> Rarely</label>
+      <label><input type="radio" name="q1" value="1"> Sometimes</label>
+      <label><input type="radio" name="q1" value="2"> Very often</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>2. Do you feel uneasy when your phone is not within reach?</p>
+    <div class="options">
+      <label><input type="radio" name="q2" value="0" required> Not at all</label>
+      <label><input type="radio" name="q2" value="1"> Slightly</label>
+      <label><input type="radio" name="q2" value="2"> Strongly</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>3. Average daily screen time?</p>
+    <div class="options">
+      <label><input type="radio" name="q3" value="0" required> Under 2 hours</label>
+      <label><input type="radio" name="q3" value="1"> 2–5 hours</label>
+      <label><input type="radio" name="q3" value="2"> Over 5 hours</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>4. Does phone usage delay your sleep?</p>
+    <div class="options">
+      <label><input type="radio" name="q4" value="0" required> Never</label>
+      <label><input type="radio" name="q4" value="1"> Occasionally</label>
+      <label><input type="radio" name="q4" value="2"> Almost every night</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>5. Have people pointed out your excessive phone use?</p>
+    <div class="options">
+      <label><input type="radio" name="q5" value="0" required> No</label>
+      <label><input type="radio" name="q5" value="1"> A few times</label>
+      <label><input type="radio" name="q5" value="2"> Frequently</label>
+    </div>
+  </div>
+
+  <button type="submit">View My Result</button>
+</form>
+
+<div id="result" class="result"></div>
+
+  </section>  <footer>
+    This tool provides general insight only and is not a medical diagnosis.
+  </footer>  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let score = 0;
+      const data = new FormData(this);
+      for (let v of data.values()) score += Number(v);
+      const r = document.getElementById("result");
+      r.style.display = "block";
+      if (score <= 3) {
+        r.className = "result low";
+        r.innerHTML = "<strong>Low Dependence</strong><br>Your usage appears balanced. Keep maintaining healthy digital habits.";
+      } else if (score <= 6) {
+        r.className = "result moderate";
+        r.innerHTML = "<strong>Moderate Dependence</strong><br>You may benefit from small screen‑time boundaries and breaks.";
+      } else {
+        r.className = "result high";
+        r.innerHTML = "<strong>High Dependence</strong><br>Your usage shows signs of over‑reliance. A structured digital detox could help.";
+      }
+    });
+  </script></body>
+</html>

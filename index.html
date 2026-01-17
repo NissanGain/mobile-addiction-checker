@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PJEYTJN3L7');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobile Addiction Checker | Digital Wellbeing</title>
@@ -8,53 +17,37 @@
   <meta name="keywords" content="mobile addiction test, screen time checker, digital wellbeing, phone addiction, self-assessment">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family:'Inter', sans-serif; background:#0f172a; color:#e5e7eb; line-height:1.7; }
-    
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Inter',sans-serif; background:#0f172a; color:#e5e7eb; line-height:1.7; }
+
     /* Header */
-    header {
-      background:#020617;
-      padding:20px 40px;
-      position:sticky;
-      top:0;
-      z-index:100;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
+    header { background:#020617; padding:20px 40px; position:sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center; }
     header h2 { color:#38bdf8; font-size:22px; font-weight:700; }
-    header nav a {
-      margin-left:20px;
-      text-decoration:none;
-      color:#cbd5e1;
-      font-weight:500;
-      transition:0.2s;
-    }
+    header nav a { margin-left:20px; text-decoration:none; color:#cbd5e1; font-weight:500; transition:0.2s; }
     header nav a:hover { color:#38bdf8; }
     header nav a.active { color:#38bdf8; font-weight:600; }
 
     /* Hero */
     .hero { padding:80px 20px; text-align:center; max-width:900px; margin:auto; }
     .badge { display:inline-block; background: rgba(56,189,248,0.15); color: #38bdf8; padding: 6px 14px; border-radius: 999px; font-size:13px; margin-bottom:16px; }
-    .hero h1 { font-size: clamp(32px, 5vw, 56px); font-weight:700; margin-bottom:16px; line-height:1.1; letter-spacing:-0.02em; }
+    .hero h1 { font-size: clamp(32px,5vw,56px); font-weight:700; margin-bottom:16px; line-height:1.1; letter-spacing:-0.02em; }
     .hero p { font-size: 18px; color:#9ca3af; max-width:640px; margin:auto 0 20px; }
-    .hero a.button {
-      display:inline-block; margin-top:20px; padding:14px 28px; border-radius:12px;
-      background:linear-gradient(135deg,#38bdf8,#6366f1); color:#020617; font-weight:600; text-decoration:none; transition:0.2s;
-    }
+    .hero a.button { display:inline-block; margin-top:20px; padding:14px 28px; border-radius:12px; background:linear-gradient(135deg,#38bdf8,#6366f1); color:#020617; font-weight:600; text-decoration:none; transition:0.2s; }
     .hero a.button:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(56,189,248,0.4); }
 
     /* Quiz Card */
     .card { max-width:800px; margin:40px auto; background:#111827; border-radius:20px; padding:32px; box-shadow:0 30px 80px rgba(0,0,0,0.6); }
     .progress { background:#1f2933; border-radius:12px; overflow:hidden; margin-bottom:20px; height:12px; }
     .progress-bar { height:100%; width:0%; background:#38bdf8; transition: width 0.3s ease; }
-    .question { margin-bottom:28px; }
+    .question { margin-bottom:28px; display:none; }
+    .question.active { display:block; }
     .question p { font-weight:500; margin-bottom:12px; font-size:16px; }
     .options label { display:flex; align-items:center; gap:10px; padding:12px 14px; background:#020617; border:1px solid #1f2933; border-radius:12px; margin-bottom:10px; cursor:pointer; transition: all 0.2s ease; }
     .options label:hover { border-color: #38bdf8; background: rgba(56,189,248,0.05); }
-    input[type=radio] { accent-color: #38bdf8; }
-    button { width:100%; padding:16px; border-radius:14px; border:none; font-size:16px; font-weight:600; cursor:pointer; background: linear-gradient(135deg, #38bdf8, #6366f1); color:#020617; transition: transform 0.15s ease, box-shadow 0.15s ease; margin-top:10px; }
+    input[type=radio] { accent-color:#38bdf8; }
+    button { width:48%; padding:16px; border-radius:14px; border:none; font-size:16px; font-weight:600; cursor:pointer; background: linear-gradient(135deg, #38bdf8, #6366f1); color:#020617; transition: transform 0.15s ease, box-shadow 0.15s ease; margin-top:10px; }
     button:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(56,189,248,0.4); }
+    .button-container { display:flex; justify-content:space-between; }
 
     /* Result */
     .result { margin-top:30px; padding:24px; border-radius:16px; display:none; font-size:16px; line-height:1.5; }
@@ -63,6 +56,7 @@
     .high { background: rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#fecaca; }
     .veryhigh { background: rgba(168,85,247,0.15); border:1px solid rgba(168,85,247,0.4); color:#e9d5ff; }
 
+    /* Share buttons */
     .share { margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
     .share a { padding:8px 14px; border-radius:10px; text-decoration:none; color:#020617; font-weight:600; background:linear-gradient(135deg,#38bdf8,#6366f1); transition:0.2s; }
     .share a:hover { transform:translateY(-2px); }
@@ -94,10 +88,10 @@
 <section class="card">
   <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
 
+  <!-- Quiz Form -->
   <form id="quizForm">
-    <!-- 12 questions go here -->
-    <!-- Example Question -->
-    <div class="question">
+    <!-- Question 1 -->
+    <div class="question active">
       <p>1. Do you check your phone first thing in the morning?</p>
       <div class="options">
         <label><input type="radio" name="q1" value="0">Never</label>
@@ -105,9 +99,122 @@
         <label><input type="radio" name="q1" value="2">Often</label>
       </div>
     </div>
-    <!-- Add all 12 questions in the same structure -->
 
-    <button type="submit">View My Result</button>
+    <!-- Question 2 -->
+    <div class="question">
+      <p>2. Do you spend more than 3 hours daily on your phone?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="0">No</label>
+        <label><input type="radio" name="q2" value="1">Sometimes</label>
+        <label><input type="radio" name="q2" value="2">Yes</label>
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question">
+      <p>3. Do you feel anxious when your phone is not nearby?</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="0">Never</label>
+        <label><input type="radio" name="q3" value="1">Sometimes</label>
+        <label><input type="radio" name="q3" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Continue questions 4-12 same way -->
+    <!-- Question 4 -->
+    <div class="question">
+      <p>4. Do you check notifications immediately, even during work or study?</p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="0">Never</label>
+        <label><input type="radio" name="q4" value="1">Sometimes</label>
+        <label><input type="radio" name="q4" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question">
+      <p>5. Do you use your phone during meals or conversations?</p>
+      <div class="options">
+        <label><input type="radio" name="q5" value="0">Never</label>
+        <label><input type="radio" name="q5" value="1">Sometimes</label>
+        <label><input type="radio" name="q5" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question">
+      <p>6. Do you often lose track of time on social media or games?</p>
+      <div class="options">
+        <label><input type="radio" name="q6" value="0">Never</label>
+        <label><input type="radio" name="q6" value="1">Sometimes</label>
+        <label><input type="radio" name="q6" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question">
+      <p>7. Do you feel irritated if someone asks you to put your phone down?</p>
+      <div class="options">
+        <label><input type="radio" name="q7" value="0">Never</label>
+        <label><input type="radio" name="q7" value="1">Sometimes</label>
+        <label><input type="radio" name="q7" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="question">
+      <p>8. Do you sleep late due to phone use?</p>
+      <div class="options">
+        <label><input type="radio" name="q8" value="0">Never</label>
+        <label><input type="radio" name="q8" value="1">Sometimes</label>
+        <label><input type="radio" name="q8" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="question">
+      <p>9. Do you check your phone while driving or walking?</p>
+      <div class="options">
+        <label><input type="radio" name="q9" value="0">Never</label>
+        <label><input type="radio" name="q9" value="1">Sometimes</label>
+        <label><input type="radio" name="q9" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="question">
+      <p>10. Do you prioritize phone use over face-to-face conversations?</p>
+      <div class="options">
+        <label><input type="radio" name="q10" value="0">Never</label>
+        <label><input type="radio" name="q10" value="1">Sometimes</label>
+        <label><input type="radio" name="q10" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 11 -->
+    <div class="question">
+      <p>11. Do you use your phone to escape boredom, stress, or negative emotions?</p>
+      <div class="options">
+        <label><input type="radio" name="q11" value="0">Never</label>
+        <label><input type="radio" name="q11" value="1">Sometimes</label>
+        <label><input type="radio" name="q11" value="2">Often</label>
+      </div>
+    </div>
+
+    <!-- Question 12 -->
+    <div class="question">
+      <p>12. Do you feel your phone use negatively affects your productivity or relationships?</p>
+      <div class="options">
+        <label><input type="radio" name="q12" value="0">Never</label>
+        <label><input type="radio" name="q12" value="1">Sometimes</label>
+        <label><input type="radio" name="q12" value="2">Often</label>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="button" id="prevBtn">Previous</button>
+      <button type="button" id="nextBtn">Next</button>
+    </div>
   </form>
 
   <div id="result" class="result"></div>
@@ -124,42 +231,50 @@
 </footer>
 
 <script>
-  const form = document.getElementById("quizForm");
-  const resultDiv = document.getElementById("result");
-  const progressBar = document.getElementById("progress-bar");
-  const shareButtons = document.getElementById("shareButtons");
-  const totalQuestions = 12;
-
   const questions = document.querySelectorAll(".question");
-  questions.forEach(q => {
-    q.addEventListener("change", () => {
-      const answered = document.querySelectorAll("input:checked").length;
-      progressBar.style.width = (answered / totalQuestions * 100) + "%";
-    });
+  const progressBar = document.getElementById("progress-bar");
+  const resultDiv = document.getElementById("result");
+  const shareButtons = document.getElementById("shareButtons");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const form = document.getElementById("quizForm");
+
+  let current = 0;
+  const totalQuestions = questions.length;
+
+  function showQuestion(n) {
+    questions.forEach((q,i)=> q.classList.remove("active"));
+    questions[n].classList.add("active");
+    progressBar.style.width = ((n)/totalQuestions*100)+"%";
+    prevBtn.style.display = n===0?"none":"inline-block";
+    nextBtn.innerText = n===totalQuestions-1?"Submit":"Next";
+  }
+
+  showQuestion(current);
+
+  nextBtn.addEventListener("click",()=>{
+    const radios = questions[current].querySelectorAll("input[type=radio]");
+    let answered = false;
+    radios.forEach(r=>{ if(r.checked) answered=true; });
+    if(!answered){ alert("Please select an answer"); return; }
+    if(current<totalQuestions-1){ current++; showQuestion(current); }
+    else { calculateResult(); }
   });
 
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
+  prevBtn.addEventListener("click",()=>{
+    if(current>0){ current--; showQuestion(current); }
+  });
+
+  function calculateResult(){
     let score = 0;
-    const data = new FormData(this);
-    for (let v of data.values()) score += Number(v);
+    const data = new FormData(form);
+    for(let v of data.values()) score+=Number(v);
 
-    resultDiv.style.display = "block";
-
-    if(score <= 5) {
-      resultDiv.className="result low";
-      resultDiv.innerHTML = "<strong>Low Dependence</strong><br>Your usage appears balanced. Keep healthy habits.";
-    } else if(score <= 10) {
-      resultDiv.className="result moderate";
-      resultDiv.innerHTML = "<strong>Moderate Dependence</strong><br>Consider small breaks and screen time limits.";
-    } else if(score <= 17) {
-      resultDiv.className="result high";
-      resultDiv.innerHTML = "<strong>High Dependence</strong><br>Your phone usage is high. Digital detox may help.";
-    } else {
-      resultDiv.className="result veryhigh";
-      resultDiv.innerHTML = "<strong>Very High Dependence</strong><br>Strong signs of over-reliance. Try structured screen time limits.";
-    }
-
+    if(score<=5){ resultDiv.className="result low"; resultDiv.innerHTML="<strong>Low Dependence</strong><br>Your usage appears balanced. Keep healthy habits.";}
+    else if(score<=10){ resultDiv.className="result moderate"; resultDiv.innerHTML="<strong>Moderate Dependence</strong><br>Consider small breaks and screen time limits.";}
+    else if(score<=17){ resultDiv.className="result high"; resultDiv.innerHTML="<strong>High Dependence</strong><br>Your phone usage is high. Digital detox may help.";}
+    else{ resultDiv.className="result veryhigh"; resultDiv.innerHTML="<strong>Very High Dependence</strong><br>Strong signs of over-reliance. Try structured screen time limits.";}
+    resultDiv.style.display="block";
     shareButtons.style.display="flex";
 
     const pageUrl = encodeURIComponent(window.location.href);
@@ -167,16 +282,10 @@
     document.getElementById("waShare").href = `https://wa.me/?text=${text}${pageUrl}`;
     document.getElementById("tgShare").href = `https://t.me/share/url?url=${pageUrl}&text=${text}`;
     document.getElementById("twShare").href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`;
-  });
-</script>
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PJEYTJN3L7');
+    document.querySelector(".button-container").style.display="none";
+    progressBar.style.width="100%";
+  }
 </script>
 
 </body>
